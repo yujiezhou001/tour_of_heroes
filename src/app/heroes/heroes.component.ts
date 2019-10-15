@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import {HEROES} from '../mock-heroes';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -9,10 +9,8 @@ import {HEROES} from '../mock-heroes';
 })
 export class HeroesComponent implements OnInit {
 
-  // hero: Hero = {
-  //   id: 1,
-  //   name: 'Windstorm'
-  // };
+  //defines heroService property and HeroService injection site
+  constructor(private heroService: HeroService) { }
 
   selectedHero: Hero;
 
@@ -20,11 +18,18 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  heroes = HEROES;
+  //simple declaration
+  heroes: Hero[];
 
-  constructor() { }
+  //use created heroService to fetch data
+  //create a function to retrieve the heroes from the service
+  getHeroes (): void {
+    this.heroes = this.heroService.getHeroes();
+  }
 
+  //is this equivalent to ComponentDidMount in React?
   ngOnInit() {
+    this.getHeroes;
   }
   
 }
