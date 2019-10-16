@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
+import { MessageService } from './message.service';
 
 //register it with the injector, which is the object that is responsible 
-//for choosing and injecting the provider where the app requires it.
+//for choosing and injecting the provider where the app requires it
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,14 @@ import { Observable, of } from 'rxjs';
 
 export class HeroService {
 
-  constructor() { }
+  //create messageService, a parameter that declares a private 
+  //messageService property Angular will inject the singleton 
+  //MessageService into that property when it creates the HeroService
+  constructor(private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
+    // TODO: send the message _after_ fetching the heroes
+    this.messageService.add('HeroService: fetched heroes');
     return of (HEROES);
   }
 }
