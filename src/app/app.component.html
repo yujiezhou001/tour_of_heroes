@@ -3,4 +3,9 @@
     <a routerLink="/heroes">Heroes</a>
 </nav>
 <router-outlet></router-outlet>
+<!-- Anything below router-outlet tag here will show only after 
+the page is directed to routes indicated in router outlet, if 
+upon going to root page "/" , then the app-messages component
+below will not show, unless, there's redirection to the routes
+indicated in router-outlet-->
 <app-messages></app-messages>
