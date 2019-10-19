@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Hero } from '../hero';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { HeroService } from '../hero.service';
+// import { Hero } from '../hero';
 
 @Component({
   selector: 'app-hero-detail',
@@ -12,11 +15,27 @@ export class HeroDetailComponent implements OnInit {
   //in order to receive, need a Input() decorator to make hero 
   //a input property
 
-  @Input() hero: Hero;
+  // @Input() hero: Hero;
 
-  constructor() { }
+  // (since we have detail/:id routing, don't need to get hero 
+  // information from parent component)
 
-  ngOnInit() {
+  // injection of services
+  constructor(
+    private route: ActivatedRoute,
+    private heroService: HeroService,
+    private location: Location
+  ) { }
+
+  ngOnInit(): void {
+    this.getHero();
+  }
+
+  getHero(): void {
+    //the plus sign converts extracted id string from url to a number
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHero(id)
+      .subscribe(hero => this.hero = hero)
   }
 
 }

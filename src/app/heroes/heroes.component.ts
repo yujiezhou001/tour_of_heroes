@@ -12,11 +12,12 @@ export class HeroesComponent implements OnInit {
   //defines heroService property and HeroService injection site
   constructor(private heroService: HeroService) { }
 
-  selectedHero: Hero;
+  //replaced by detail/:id routing and router outlet
+  // selectedHero: Hero;
 
-  onSelect (hero: Hero): void  {
-    this.selectedHero = hero;
-  }
+  // onSelect (hero: Hero): void  {
+  //   this.selectedHero = hero;
+  // }
 
   //simple declaration
   heroes: Hero[];
