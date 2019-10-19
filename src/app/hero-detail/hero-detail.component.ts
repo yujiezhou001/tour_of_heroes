@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { HeroService } from '../hero.service';
+import { Hero } from '../hero';
 // import { Hero } from '../hero';
 
 @Component({
@@ -14,8 +15,10 @@ export class HeroDetailComponent implements OnInit {
   //receives hero variable passed down from parent component
   //in order to receive, need a Input() decorator to make hero 
   //a input property
-
+  
+  //(not receiving hero information from parent anymore)
   // @Input() hero: Hero;
+  hero: Hero;
 
   // (since we have detail/:id routing, don't need to get hero 
   // information from parent component)
@@ -36,6 +39,10 @@ export class HeroDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero)
+  }
+
+  goBack() :void {
+    this.location.back();
   }
 
 }

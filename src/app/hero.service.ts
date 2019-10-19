@@ -34,6 +34,8 @@ export class HeroService {
     //   }
     // })
     // return of (hero);
+
+    //returns an object
     return of (HEROES.find(hero => hero.id === id));
   }
 }
