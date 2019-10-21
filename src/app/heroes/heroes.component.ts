@@ -34,6 +34,16 @@ export class HeroesComponent implements OnInit {
         .subscribe(heroes => this.heroes = heroes);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    //this is passing name to Hero object's name property
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
+
   //is this equivalent to ComponentDidMount in React?
   ngOnInit() {
     this.getHeroes();
